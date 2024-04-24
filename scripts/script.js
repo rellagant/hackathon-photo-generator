@@ -8,7 +8,7 @@ console.log("Hello world");
 
 // async function getRandomPhoto(apiKey) {
 // 	try {
-// 		const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=TBD&count=1`;
+// 		const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=TBDs&count=1`;
 
 // 		const response = await axios.get(apiUrl);
 
@@ -36,14 +36,24 @@ async function getRandomPhoto() {
 	const randomPhoto =
 		"https://api.nasa.gov/planetary/apod?api_key=TBD&count=1";
 
-	const { data } = await axios.get(randomPhoto);
-	randomPhoto.src = data.url;
-	console.log(data);
+	try {
+		const { data } = await axios.get(randomPhotoUrl);
+		const imageUrl = data[0].url;
+		// randomPhoto.src = data.url;
+		titleElement.textContent = data[0].title;
+		dateElement.textContent = data[0].date;
+		explanationElement.textContent = data[0].explanation;
+
+		console.log(data);
+		imageContainer.src = imageUrl;
+	} catch (error) {
+		console.error("Error grabbing jpeg:", error);
+	}
 }
 
 getRandomPhoto();
 
 const button = document.querySelector(".main__button");
 const titleElement = document.querySelector(".main__title");
-const dateElement = document.querySelector("main__date");
-const explanationElement = document.querySelector("main__explanation");
+const dateElement = document.querySelector(".main__date");
+const explanationElement = document.querySelector(".main__explanation");
