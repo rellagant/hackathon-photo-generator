@@ -1,40 +1,8 @@
-console.log("Hello world");
-
-// const apiKey = "TBD";
-
-// const apiKey = new HackathonSiteApi(
-// 	"api_key=TBD"
-// );
-
-// async function getRandomPhoto(apiKey) {
-// 	try {
-// 		const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=TBDs&count=1`;
-
-// 		const response = await axios.get(apiUrl);
-
-// 		const randomPhoto = {
-// 			imageUrl: response.data[0].hdurl, //can also be just .Url <- there are two options for photo url
-// 			title: response.data[0].title,
-// 			date: response.data[0].date,
-// 			explanation: response.data[0].explanation,
-// 		};
-// 		return randomPhoto;
-// 	} catch {
-// 		(error) => {
-// 			console.error("Error getting random photo:", error);
-// 		};
-// 	}
-// }
-
-// button.addEventListener('click', function()) {
-
-// }
-
 const imageContainer = document.querySelector(".main__image");
+const API_KEY = config.API_KEY;
 
 async function getRandomPhoto() {
-	const randomPhoto =
-		"https://api.nasa.gov/planetary/apod?api_key=TBD&count=1";
+	const randomPhotoUrl = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
 
 	try {
 		const { data } = await axios.get(randomPhotoUrl);
